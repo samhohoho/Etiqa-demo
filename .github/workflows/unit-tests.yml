@@ -8,10 +8,27 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        java: [ '21' ]                # add '21' etc. if you like
+        java: [ '21' ]
+
     name: Test on JDK ${{ matrix.java }}
+
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5555:5432
+        env:
+          POSTGRES_PASSWORD: admin
+          POSTGRES_USER: admin
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
