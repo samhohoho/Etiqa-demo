@@ -16,9 +16,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
-    // @Mock
-    // private ProductMapper productMapper;
-
     @Mock
     private ProductRepository productRepository;
 
