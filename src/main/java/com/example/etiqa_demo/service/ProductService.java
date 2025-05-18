@@ -27,8 +27,9 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public void updateProduct(long productId, ProductUpdateDto dto) {
+    public Product updateProduct(long productId, ProductUpdateDto dto) {
         Product product = ProductMapper.toModel(productId, dto);
-        productRepository.save(product);
+        Product result = productRepository.save(product);
+        return result;
     }
 }
