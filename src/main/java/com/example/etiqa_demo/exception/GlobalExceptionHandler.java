@@ -10,13 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
-    private final static String internalServerError = "Internal Server Error";
+    private final static String internalServerErrorMsg = "Internal Server Error";
 
     @ExceptionHandler({RuntimeException.class})
-    public ResponseEntity<Object> handleRuntimeException(RuntimeException e) {
-        log.error(internalServerError);
+    public ResponseEntity<Object> handleRuntimeException(RuntimeException ex) {
+        log.error(internalServerErrorMsg, ex);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(internalServerError);
+                .body(internalServerErrorMsg);
     }
 }
