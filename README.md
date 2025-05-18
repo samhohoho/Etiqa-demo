@@ -1,5 +1,7 @@
 # Etiqa assessment
 
+[![Unit Tests](https://github.com/samhohoho/Etiqa-demo/actions/workflows/unit-tests.yml/badge.svg?event=push)](https://github.com/samhohoho/Etiqa-demo/actions/workflows/unit-tests.yml)
+
 ## Technologies and frameworks
 
 - Java 21
