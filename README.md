@@ -9,6 +9,11 @@
 - Postgres
 - GitHub Actions
 
+## Prerequisites
+
+1. Install JDK 21
+2. Install Docker (for Postgres database).
+
 ## Local development setup
 
 1. Get the latest source code.
@@ -30,6 +35,4 @@ cd /path/to/etiqa-demo/
 mvn spring-boot:run
 ```
 
-## You might want to explore
-
-1. `http://localhost:8080/swagger-ui/index.html` for REST API document.
+4. Go to `http://localhost:8080/swagger-ui/index.html` to test the API.
