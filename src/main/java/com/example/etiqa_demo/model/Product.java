@@ -1,5 +1,7 @@
 package com.example.etiqa_demo.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String bookTitle;
-    private String bookPrice;
+    private BigDecimal bookPrice;
     private int bookQuantity;
 }

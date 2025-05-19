@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.math.BigDecimal;
+
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
     @Mock
@@ -27,14 +29,14 @@ public class ProductServiceTest {
         long productId = 1L;
 
         ProductUpdateDto productUpdateDto = ProductUpdateDto.builder()
-                .bookPrice("123")
+                .bookPrice(new BigDecimal(11.11))
                 .bookTitle("Head First Java")
                 .bookQuantity(1)
                 .build();
 
         Product expectedResult = Product.builder()
                 .id(productId)
-                .bookPrice("123")
+                .bookPrice(new BigDecimal(11.11))
                 .bookTitle("Head First Java")
                 .bookQuantity(1)
                 .build();
