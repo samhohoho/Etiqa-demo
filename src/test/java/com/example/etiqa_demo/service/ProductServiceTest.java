@@ -7,14 +7,17 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.etiqa_demo.dto.ProductUpdateDto;
+import com.example.etiqa_demo.exception.NotFoundException;
 import com.example.etiqa_demo.model.Product;
 import com.example.etiqa_demo.repository.ProductRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
@@ -46,5 +49,18 @@ public class ProductServiceTest {
         Product result = productService.updateProduct(productId, productUpdateDto);
 
         assertEquals(expectedResult.getId(), result.getId());
+    }
+
+    @Test
+    void updateProduct_WhenProductNotFound_ThrowNotFoundException() {
+        ProductUpdateDto productUpdateDto = ProductUpdateDto.builder()
+                .bookTitle("New Title")
+                .build();
+
+        when(productRepository.findById(any(Long.class))).thenReturn(Optional.empty());
+
+        assertThrows(NotFoundException.class, () -> {
+            productService.updateProduct(1L, productUpdateDto);
+        });
     }
 }
