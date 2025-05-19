@@ -1,6 +1,10 @@
 package com.example.etiqa_demo.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,5 +33,6 @@ public class Customer {
     private String lastName;
     private String email;
     @OneToMany(mappedBy = "customer")
+    @JsonManagedReference
     private List<Product> products;
 }

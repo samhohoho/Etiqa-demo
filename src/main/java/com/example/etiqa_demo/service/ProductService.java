@@ -8,7 +8,9 @@ import com.example.etiqa_demo.dto.ProductCreateDto;
 import com.example.etiqa_demo.dto.ProductUpdateDto;
 import com.example.etiqa_demo.exception.NotFoundException;
 import com.example.etiqa_demo.mapper.ProductMapper;
+import com.example.etiqa_demo.model.Customer;
 import com.example.etiqa_demo.model.Product;
+import com.example.etiqa_demo.repository.CustomerRepository;
 import com.example.etiqa_demo.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+    private final CustomerRepository customerRepository;
 
     public List<Product> getManyProducts() {
         List<Product> products = productRepository.findAll();
@@ -24,7 +27,9 @@ public class ProductService {
     }
 
     public void createProduct(ProductCreateDto dto) {
-        Product product = ProductMapper.toModel(dto);
+        Customer customer = customerRepository.findById(dto.getCustomerId()).orElseThrow(() -> new NotFoundException("Customer not found"));
+
+        Product product = ProductMapper.toModel(dto, customer);
         productRepository.save(product);
     }
 

@@ -13,4 +13,5 @@ public class ProductUpdateDto {
     private String bookTitle;
     private BigDecimal bookPrice;
     private int bookQuantity;
+    private long customerId;
 }
