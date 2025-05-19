@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.etiqa_demo.dto.ProductCreateDto;
 import com.example.etiqa_demo.dto.ProductUpdateDto;
+import com.example.etiqa_demo.exception.NotFoundException;
 import com.example.etiqa_demo.mapper.ProductMapper;
 import com.example.etiqa_demo.model.Product;
 import com.example.etiqa_demo.repository.ProductRepository;
@@ -28,6 +29,8 @@ public class ProductService {
     }
 
     public Product updateProduct(long productId, ProductUpdateDto dto) {
+        productRepository.findById(productId).orElseThrow(() -> new NotFoundException("Product not found"));
+
         Product product = ProductMapper.toModel(productId, dto);
         Product result = productRepository.save(product);
         return result;

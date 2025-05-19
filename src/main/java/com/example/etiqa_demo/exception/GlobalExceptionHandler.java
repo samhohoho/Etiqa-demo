@@ -12,6 +12,14 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionHandler {
     private final static String internalServerErrorMsg = "Internal Server Error";
 
+    @ExceptionHandler({NotFoundException.class})
+    public ResponseEntity<Object> handleNotFoundException(NotFoundException ex) {
+        log.error(ex.getMessage(), ex);
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(ex.getMessage());
+    }
+
     @ExceptionHandler({RuntimeException.class})
     public ResponseEntity<Object> handleRuntimeException(RuntimeException ex) {
         log.error(internalServerErrorMsg, ex);
