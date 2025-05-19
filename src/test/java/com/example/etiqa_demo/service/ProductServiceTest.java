@@ -44,6 +44,7 @@ public class ProductServiceTest {
                 .bookQuantity(1)
                 .build();
 
+        when(productRepository.findById(any(Long.class))).thenReturn(Optional.of(expectedResult));
         when(productRepository.save(any(Product.class))).thenReturn(expectedResult);
 
         Product result = productService.updateProduct(productId, productUpdateDto);
